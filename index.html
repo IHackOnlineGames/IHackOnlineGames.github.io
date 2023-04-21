@@ -1,0 +1,58 @@
+<html><body><!DOCTYPE html>
+<html>
+  <head>
+    <title>Kinder toy</title>
+  </head>
+  <body>
+  
+    <center><button id="myButton" style="background-color: red; color: white;">Genorate kinder joy codes</button></center>
+
+    
+    <script>
+      var myButton = document.getElementById("myButton");
+
+      myButton.addEventListener("click", function() {
+       const base_url = "https://qr.kinder.com/";
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const digits = "0123456789";
+
+// Generate all possible combinations of two-letter and four-digit codes
+const codes = [];
+
+for (const letter1 of letters) {
+  for (const letter2 of letters) {
+    for (const digit1 of digits) {
+      for (const digit2 of digits) {
+        const code = `${letter1}${letter2}${digit1}${digit2}`;
+        codes.push(code);
+      }
+    }
+  }
+}
+
+let i = 0;
+
+function openNextUrl() {
+  if (i >= codes.length) {
+    return;
+  }
+  
+  const url = base_url + codes[i];
+  const tab = window.open(url, "_blank");
+  
+  setTimeout(() => {
+    tab.close();
+    i++;
+    openNextUrl();
+  }, 300);
+}
+
+openNextUrl();
+
+        // hide the button
+        myButton.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
+</body></html>
