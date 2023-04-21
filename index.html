@@ -12,7 +12,7 @@
       var myButton = document.getElementById("myButton");
 
       myButton.addEventListener("click", function() {
-       const base_url = "https://qr.kinder.com/";
+const base_url = "https://qr.kinder.com/";
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const digits = "0123456789";
 
@@ -40,14 +40,17 @@ function openNextUrl() {
   const url = base_url + codes[i];
   const tab = window.open(url, "_blank");
   
-  setTimeout(() => {
-    tab.close();
-    i++;
-    openNextUrl();
-  }, 300);
+  const checkInterval = setInterval(() => {
+    if (tab.closed) {
+      clearInterval(checkInterval);
+      i++;
+      openNextUrl();
+    }
+  }, 100);
 }
 
 openNextUrl();
+
 
         // hide the button
         myButton.style.display = "none";
