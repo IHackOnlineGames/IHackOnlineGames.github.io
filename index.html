@@ -40,16 +40,16 @@ function openNextUrl() {
   const url = base_url + codes[i];
   const tab = window.open(url, "_blank");
   
-  const checkInterval = setInterval(() => {
-    if (tab.closed) {
-      clearInterval(checkInterval);
-      i++;
-      openNextUrl();
-    }
-  }, 100);
+  setTimeout(() => {
+    tab.close();
+    i++;
+    openNextUrl();
+  }, 300);
 }
 
 openNextUrl();
+
+        
       });
     </script>
   </body>
